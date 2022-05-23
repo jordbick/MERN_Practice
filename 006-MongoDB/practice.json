@@ -1,0 +1,95 @@
+db.superheroes.insertMany([
+    {
+        name: "Dr Strange",
+        age: 30
+    },
+    {
+        name: "Batman",
+        age: 35
+    }
+])
+
+db.superheroes.find();
+
+db.supervillains.insertMany([
+    {   
+        name: "Thanos",
+        age: 45,
+        evil: true,
+        powers: [
+            "Infinity Stones",
+            "Strength"
+        ]
+    },
+
+    {
+        Name: "General Zod",
+        age: 30,
+        evil: true,
+        powers: [
+            "Flight",
+            "Strength",
+            "Laser eyes",
+            "Super speed"
+        ]
+    }
+]);
+
+db.restaurants.find(
+    {},
+    {
+        name: true,
+        borough: true,
+        cuisine: true
+    });
+
+    db.restaurants.find(
+        {},
+        {
+            restaurant_id : 1,
+            "name":1,
+            "borough":1,
+            "cuisine" :1,
+            "_id":0
+        }
+);
+
+db.restaurants.find({},{"restaurant_id" : 1,"name":1,"borough":1,"address.zipcode" :1,"_id":0});
+
+db.restaurants.find({"borough": "Bronx"});
+
+db.restaurants.find({"borough": "Bronx"}).limit(5);
+
+db.restaurants.find({"borough": "Bronx"}).skip(5).limit(5);
+
+db.restaurants.find({"grades.score": {"$gt":90}});
+OR
+db.restaurants.find({grades : { $elemMatch:{"score":{$gt : 90}}}});
+
+db.restaurants.find({grades : { $elemMatch:{"score":{$gt : 80 , $lt :100}}}});
+
+db.restaurants.find({"address.coord.0" : {$lt:-95.754168}});
+
+db.restaurants.find({"address.coord.0" : {$lt:-65.754168}, "cuisine": {$ne:"American"}, grades : {$elemMatch:{"score":{$gt:70}}}});
+OR
+db.restaurants.find({"address.coord.0" : {$lt:-65.754168}, "cuisine": {$ne:"American"}, "grades.score":{$gt:70}});
+OR
+db.restaurants.find({$and:[{"address.coord.0" : {$lt:-65.754168}}, {"cuisine": {$ne:"American"}}, {"grades.score":{$gt:70}}]});
+
+db.environments.updateOne({
+    name: "The Swamp"
+  },
+  {$set : {supervillains: ["Loki"]}}
+  )
+
+  db.environments.updateOne({
+    "name": "The Swamp"
+  },
+  {$set : {"supervillains": {"Name":"Loki"}}}
+  )
+
+  db.environments.updateOne({
+    "name": "The Swamp"
+  },
+  {$set : {"furniture": ["Chair", "Lamp"] }}
+  );

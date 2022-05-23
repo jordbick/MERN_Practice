@@ -1,0 +1,19 @@
+{
+  "name": "005-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "superheroes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "dog-names": "^2.0.0",
+    "superheroes": "^3.0.0",
+    "supervillains": "^3.0.0"
+  }
+}
